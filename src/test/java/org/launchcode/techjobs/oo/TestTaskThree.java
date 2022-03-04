@@ -19,7 +19,7 @@ public class TestTaskThree extends AbstractTest {
     @Test
     public void testHasNoArgConstructor() throws ClassNotFoundException {
         Class jobClass = getClassByName("Job");
-        Constructor<Job> noArgConstructor = null;
+        Constructor<TestTaskSix.Job> noArgConstructor = null;
         try {
             noArgConstructor = jobClass.getConstructor();
         } catch (NoSuchMethodException e) {
@@ -31,8 +31,8 @@ public class TestTaskThree extends AbstractTest {
     @Test
     public void testNoArgConstructorInitializesIdField () throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException {
         Class jobClass = getClassByName("Job");
-        Constructor<Job> noArgConstructor = jobClass.getConstructor();
-        Job job = noArgConstructor.newInstance();
+        Constructor<TestTaskSix.Job> noArgConstructor = jobClass.getConstructor();
+        TestTaskSix.Job job = noArgConstructor.newInstance();
         Field idField = jobClass.getDeclaredField("id");
         idField.setAccessible(true);
         assertTrue(idField.getInt(job) != 0);
@@ -41,9 +41,9 @@ public class TestTaskThree extends AbstractTest {
     @Test
     public void testNoArgConstructorSetsUniqueIds () throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException {
         Class jobClass = getClassByName("Job");
-        Constructor<Job> noArgConstructor = jobClass.getConstructor();
-        Job aJob = noArgConstructor.newInstance();
-        Job anotherJob = noArgConstructor.newInstance();
+        Constructor<TestTaskSix.Job> noArgConstructor = jobClass.getConstructor();
+        TestTaskSix.Job aJob = noArgConstructor.newInstance();
+        TestTaskSix.Job anotherJob = noArgConstructor.newInstance();
         Field idField = jobClass.getDeclaredField("id");
         idField.setAccessible(true);
         assertNotEquals(idField.getInt(aJob), idField.getInt(anotherJob));
@@ -52,7 +52,7 @@ public class TestTaskThree extends AbstractTest {
     @Test
     public void testSecondConstructorArguments() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class jobClass = getClassByName("Job");
-        Constructor<Job> noArgConstructor = null;
+        Constructor<TestTaskSix.Job> noArgConstructor = null;
         try {
             noArgConstructor = jobClass.getConstructor(
                     String.class,
@@ -68,14 +68,14 @@ public class TestTaskThree extends AbstractTest {
     @Test
     public void testSecondConstructorInitializesProperties() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException, NoSuchFieldException {
         Class jobClass = getClassByName("Job");
-        Constructor<Job> secondConstructor = jobClass.getConstructor(
+        Constructor<TestTaskSix.Job> secondConstructor = jobClass.getConstructor(
                 String.class,
                 Employer.class,
                 Location.class,
                 PositionType.class,
                 CoreCompetency.class);
 
-        Job aJob = createJob ("Name", "Employer", "Location", "Position Type", "Core Competency");
+        TestTaskSix.Job aJob = createJob ("Name", "Employer", "Location", "Position Type", "Core Competency");
 
         assertNotNull(getJobFieldString(aJob, "name", false));
         assertNotNull(getJobFieldString(aJob, "employer", false));
@@ -85,9 +85,9 @@ public class TestTaskThree extends AbstractTest {
     }
 
     @Test
-    public void testSecondConstructorCallsNoArgConstructor (@Mocked Job job) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void testSecondConstructorCallsNoArgConstructor (@Mocked TestTaskSix.Job job) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         new Expectations() {{
-            new Job(); minTimes = 1; maxTimes = 1;
+            new TestTaskSix.Job(); minTimes = 1; maxTimes = 1;
         }};
         createJob("Name",
                 "Employer",
@@ -217,13 +217,13 @@ public class TestTaskThree extends AbstractTest {
 
     @Test
     public void testEqualsMethod() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException, NoSuchFieldException {
-        Job job = createJob(
+        TestTaskSix.Job job = createJob(
                 "Name",
                 "Employer",
                 "Location",
                 "Position Type",
                 "Core Competency");
-        Job anotherJob = createJob(
+        TestTaskSix.Job anotherJob = createJob(
                 "Name",
                 "Employer",
                 "Location",
@@ -231,7 +231,7 @@ public class TestTaskThree extends AbstractTest {
                 "Core Competency");
 
         try {
-            Job.class.getDeclaredMethod("equals", Object.class);
+            TestTaskSix.Job.class.getDeclaredMethod("equals", Object.class);
         } catch (NoSuchMethodException e) {
             fail("Job does not declare an equals method");
         }
@@ -241,7 +241,7 @@ public class TestTaskThree extends AbstractTest {
         assertNotEquals(getJobId(job), getJobId(anotherJob));
 
         // Use reflection to make both objects have the same id and test
-        Field anotherJobIdField = Job.class.getDeclaredField("id");
+        Field anotherJobIdField = TestTaskSix.Job.class.getDeclaredField("id");
         anotherJobIdField.setAccessible(true);
         anotherJobIdField.set(anotherJob, getJobId(job));
         assertTrue(job.equals(anotherJob));
@@ -249,13 +249,13 @@ public class TestTaskThree extends AbstractTest {
 
     @Test
     public void testHashCodeMethod() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, NoSuchFieldException {
-        Job job = createJob(
+        TestTaskSix.Job job = createJob(
                 "Name",
                 "Employer",
                 "Location",
                 "Position Type",
                 "Core Competency");
-        Job anotherJob = createJob(
+        TestTaskSix.Job anotherJob = createJob(
                 "Name",
                 "Employer",
                 "Location",
@@ -264,7 +264,7 @@ public class TestTaskThree extends AbstractTest {
         Method hashCodeMethod = null;
 
         try {
-            hashCodeMethod = Job.class.getDeclaredMethod("hashCode");
+            hashCodeMethod = TestTaskSix.Job.class.getDeclaredMethod("hashCode");
         } catch (NoSuchMethodException e) {
             fail("Job does not declare an hashCode method");
         }
@@ -273,7 +273,7 @@ public class TestTaskThree extends AbstractTest {
         assertNotEquals(job.hashCode(), anotherJob.hashCode());
 
         // Use reflection to make both objects have the same id and test
-        Field anotherJobIdField = Job.class.getDeclaredField("id");
+        Field anotherJobIdField = TestTaskSix.Job.class.getDeclaredField("id");
         anotherJobIdField.setAccessible(true);
         anotherJobIdField.set(anotherJob, getJobId(job));
         assertEquals(hashCodeMethod.invoke(job), hashCodeMethod.invoke(anotherJob));

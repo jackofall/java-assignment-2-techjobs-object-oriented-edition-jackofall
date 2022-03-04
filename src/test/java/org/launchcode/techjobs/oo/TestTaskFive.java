@@ -30,7 +30,7 @@ public class TestTaskFive extends AbstractTest {
     }
 
     @Test
-    public void testTestToStringStartsAndEndsWithNewLineCallsToString (@Mocked Job job) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public void testTestToStringStartsAndEndsWithNewLineCallsToString (@Mocked TestTaskSix.Job job) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class jobTestClass = getClassByName("test.JobTest");
         JobTest jobTest = (JobTest) jobTestClass.getConstructor().newInstance();
         Method testToStringStartsAndEndsWithNewLineMethod = jobTestClass.getMethod("testToStringStartsAndEndsWithNewLine");
@@ -61,7 +61,7 @@ public class TestTaskFive extends AbstractTest {
 
     @Test
     public void testToStringStartsAndEndsWithNewLine() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Job job = createJob("Web Developer", "LaunchCode", "StL", "Back-end developer", "Java");
+        TestTaskSix.Job job = createJob("Web Developer", "LaunchCode", "StL", "Back-end developer", "Java");
         char firstChar = job.toString().charAt(0);
         char lastChar = job.toString().charAt(job.toString().length()-1);
         assertEquals(firstChar, '\n');
@@ -81,7 +81,7 @@ public class TestTaskFive extends AbstractTest {
     }
 
     @Test
-    public void testTestToStringContainsCorrectLabelsAndDataCallsToString (@Mocked Job job) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public void testTestToStringContainsCorrectLabelsAndDataCallsToString (@Mocked TestTaskSix.Job job) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class jobTestClass = getClassByName("test.JobTest");
         JobTest jobTest = (JobTest) jobTestClass.getConstructor().newInstance();
         Method testToStringContainsCorrectLabelsAndDataMethod = jobTestClass.getMethod("testToStringContainsCorrectLabelsAndData");
@@ -112,7 +112,7 @@ public class TestTaskFive extends AbstractTest {
 
     @Test
     public void testToStringContainsCorrectLabelsAndData() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, NoSuchFieldException {
-        Job job = createJob("Web Developer", "LaunchCode", "StL", "Back-end developer", "Java");
+        TestTaskSix.Job job = createJob("Web Developer", "LaunchCode", "StL", "Back-end developer", "Java");
         String jobString = getJobString(job);
         assertEquals(jobString, job.toString());
     }
@@ -130,7 +130,7 @@ public class TestTaskFive extends AbstractTest {
     }
 
     @Test
-    public void testTestToStringHandlesEmptyFieldCallsToString (@Mocked Job job) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public void testTestToStringHandlesEmptyFieldCallsToString (@Mocked TestTaskSix.Job job) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class jobTestClass = getClassByName("test.JobTest");
         JobTest jobTest = (JobTest) jobTestClass.getConstructor().newInstance();
         Method testToStringHandlesEmptyField = jobTestClass.getMethod("testToStringHandlesEmptyField");
@@ -161,7 +161,7 @@ public class TestTaskFive extends AbstractTest {
 
     @Test
     public void testToStringHandlesEmptyField() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, NoSuchFieldException {
-        Job job = createJob("Web Developer", "", "StL", "", "Java");
+        TestTaskSix.Job job = createJob("Web Developer", "", "StL", "", "Java");
         String jobString = getJobString(job);
         assertEquals(jobString, job.toString());
     }

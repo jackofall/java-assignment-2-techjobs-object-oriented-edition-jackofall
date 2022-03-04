@@ -33,14 +33,14 @@ public class TestTaskFour extends AbstractTest {
     }
 
     @Test
-    public void testTestSettingJobIdCallsJobConstructorTwice (@Mocked Job job) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public void testTestSettingJobIdCallsJobConstructorTwice (@Mocked TestTaskSix.Job job) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class jobTestClass = getClassByName("test.JobTest");
         JobTest jobTest = (JobTest) jobTestClass.getConstructor().newInstance();
         Method testSettingJobIdMethod = jobTestClass.getMethod("testSettingJobId");
 
 
         new Expectations() {{
-            new Job(); minTimes = 2; maxTimes = 2;
+            new TestTaskSix.Job(); minTimes = 2; maxTimes = 2;
         }};
 
         try {
