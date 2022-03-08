@@ -9,11 +9,18 @@ public class Job {
     private CoreCompetency coreCompetency;
     private Location location;
     private PositionType positionType;
+
     public Job() {
         id = nextId;
         nextId++;
     }
-
+    public Job(Employer employer, CoreCompetency coreCompetency, Location location, PositionType positionType) {
+        this();
+        this.employer = employer;
+        this.coreCompetency = coreCompetency;
+        this.location = location;
+        this.positionType = positionType;
+    }
     public int getId() {
         return id;
     }
@@ -66,11 +73,5 @@ public class Job {
         return Objects.hash(getId());
     }
 
-    public Job(Employer employer, CoreCompetency coreCompetency, Location location, PositionType positionType) {
-      this();
-        this.employer = employer;
-        this.coreCompetency = coreCompetency;
-        this.location = location;
-        this.positionType = positionType;
-    }
+
 }
