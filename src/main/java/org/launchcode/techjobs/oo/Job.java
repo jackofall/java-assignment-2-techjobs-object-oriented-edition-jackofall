@@ -3,6 +3,7 @@ package org.launchcode.techjobs.oo;
 import java.util.Objects;
 
 public class Job {
+    private String name;
     private int id;
     private static int nextId = 1;
     private Employer employer;
@@ -14,13 +15,23 @@ public class Job {
         id = nextId;
         nextId++;
     }
-    public Job(Employer employer, CoreCompetency coreCompetency, Location location, PositionType positionType) {
+    public Job(String name,Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
+        this.name = name;
         this.employer = employer;
-        this.coreCompetency = coreCompetency;
         this.location = location;
         this.positionType = positionType;
+        this.coreCompetency = coreCompetency;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
