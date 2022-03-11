@@ -5,8 +5,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.launchcode.techjobs.oo.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 /**
  * Created by LaunchCode
@@ -19,7 +18,7 @@ public class JobTest {
         Job myNewJob= new Job() ;
  assertEquals(1, myJob.getId());
  assertEquals(2, myNewJob.getId());
- assertFalse(myJob.getId()==myNewJob.getId());
+        assertNotEquals(myJob.getId(), myNewJob.getId());
     }
 @Test
 public void testJobConstructorSetsAllFields() {
@@ -39,8 +38,8 @@ public void testJobsForEquality(){
 }
     public JobTest() {
     }
-}
 
+}
 
 
 
